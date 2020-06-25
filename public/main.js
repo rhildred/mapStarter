@@ -1,5 +1,3 @@
-import L from "leaflet";
-
 let mymap = null;
 
 function showPosition(oPosition){
@@ -13,6 +11,23 @@ function showPosition(oPosition){
         maxZoom: 18,
         attribution: attribution
     }).addTo(mymap);
+
+    mymap.on("contextmenu", (evt)=>{
+        alert("latitude: " + 
+            evt.latlng.lat +
+            " longitude: " +
+            evt.latlng.lng
+        );
+        L.marker([evt.latlng.lat, evt.latlng.lng]).addTo(mymap);
+    });
+
+    // put a maker at 43.45367826273489 longitude: -80.5510711669922
+
+    const marker = L.marker([43.45367826273489, -80.5510711669922]).addTo(mymap);
+    marker.bindPopup("Rich is here.");
+
+
+
 }
 
 window.addEventListener("load", () =>{
